@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>KOOFARR</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+
+</head>
+
+<body>
+
+    <div class="header-blue">
+        <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+            <div class="container"><a class="navbar-brand" href="/">KOOFARR</a><button class="navbar-toggler"
+                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle
+                        navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Link</a>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false" href="#">Dropdown </a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                    href="#">First Item</a><a class="dropdown-item" role="presentation"
+                                    href="#">Second Item</a><a class="dropdown-item" role="presentation"
+                                    href="#">Third Item</a></div>
+                        </li>
+                    </ul>
+                    <form class="form-inline mr-auto" target="_self">
+                        <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
+                                class="form-control search-field" type="search" name="search" id="search-field">
+                        </div>
+                    </form><span class="navbar-text"> <a href="#" class="login">Connexion</a></span><a
+                        class="btn btn-light action-button" role="button" href="#">Inscription</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Creer un compte</h1>
+                                </div>
+                                <form class="user" method="post" action="{{route('traitment_register')}}">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user"
+                                                  name="lastnameUser" placeholder="Nom">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control form-control-user"
+                                                placeholder="Prenom" name="firstnameUser">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" name="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" name="password" placeholder="Mot de passe">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            {{-- <input type="file" class="form-control form-control-user"
+                                                id="" name="nin" placeholder="CIN"> a mettre le chemin d'access --}}
+                                                <input type="text" class="form-control form-control-user"
+                                                id="" name="nin" placeholder="NIN">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        S'inscrire
+                                    </button>
+                                    <hr>
+                                </form>
+                                @if (session('status'))
+                                <div class="text-center">
+                                    <p>{{session('status')}}</p>
+                                </div>
+                                @endif
+                                {{-- <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                </div> --}}
+                                <div class="text-center">
+                                    <a class="small" href="">Vous avez déja un compte ? Connectez vous !</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,3 +1,4 @@
+@if (session('user'))
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,7 @@
         @include('layout.partials.sidebar')
         @include('layout.partials.topbar')
         <div id="wrapper">
-            
+            @yield('content')
         </div>
         @include('layout.partials.footer')
         
@@ -48,3 +49,8 @@
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
 </body>
 </html>
+@else
+@php
+    redirect('/');
+@endphp
+@endif    

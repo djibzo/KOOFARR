@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('layout.app');
-});
 Route::get('/', function () {
     return view('default');
 });
+Route::middleware(['custom.auth'])->group(function () {
+    // Routes nécessitant une authentification, acceptant également votre méthode de session personnalisée
+    Route::get('/welcome',[UserController::class,'welcome']);
+});
+Route::get('/register',[UserController::class,'index'])->name('register');
+Route::get('/login',[UserController::class,'login'])->name('login');
+Route::post('/register/traitment',[UserController::class,'traitment_register'])->name('traitment_register');
+Route::post('/login/traitment',[UserController::class,'traitment_login'])->name('traitment_login');
+Route::get('/logout',[UserController::class,'logout'])->name('logout');

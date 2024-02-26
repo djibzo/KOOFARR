@@ -26,7 +26,7 @@
                         </ul>
                         <form class="form-inline mr-auto" target="_self">
                             <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
-                        </form><span class="navbar-text"> <a href="#" class="login">Log In</a></span><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></div>
+                        </form><span class="navbar-text"> <a href="{{route('login')}}" class="login">Connexion</a></span><a class="btn btn-light action-button" role="button" href="{{route('register')}}">Inscription</a></div>
                 </div>
             </nav>
             <div class="container hero">

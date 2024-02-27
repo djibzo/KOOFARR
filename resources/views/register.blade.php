@@ -66,32 +66,59 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Creer un compte</h1>
                                 </div>
-                                <form class="user" method="post" action="{{route('traitment_register')}}">
+                                <form class="user" method="post" action="{{ route('traitment_register') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="text" class="form-control form-control-user"
-                                                  name="lastnameUser" placeholder="Nom">
+                                                name="lastnameUser" placeholder="Nom">
+                                            @if ($errors->has('lastnameUser'))
+                                                <p class="text-danger">{{ $errors->first('lastnameUser') }}</p>
+                                            @endif
                                         </div>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control form-control-user"
                                                 placeholder="Prenom" name="firstnameUser">
+                                                @if ($errors->has('firstnameUser'))
+                                                <p class="text-danger">{{ $errors->first('firstnameUser') }}</p>
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" name="email" placeholder="Email">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" name="email" placeholder="Email">
+                                                @if ($errors->has('email'))
+                                                <p class="text-danger">{{ $errors->first('email') }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="file" class="form-control form-control-user"
+                                                id="exampleInputEmail" name="nin" placeholder="">
+                                                @if ($errors->has('nin'))
+                                                <p class="text-danger">{{ $errors->first('nin') }}</p>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" name="password" placeholder="Mot de passe">
+                                                @if ($errors->has('password'))
+                                                <p class="text-danger">{{ $errors->first('password') }}</p>
+                                            @endif
                                         </div>
                                         <div class="col-sm-6">
-                                            {{-- <input type="file" class="form-control form-control-user"
-                                                id="" name="nin" placeholder="CIN"> a mettre le chemin d'access --}}
-                                                <input type="text" class="form-control form-control-user"
-                                                id="" name="nin" placeholder="NIN">
+                                            <select name="pack" id=""
+                                                class="form-control form-control-md mt-2">
+                                                @forelse ($pack as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                            @if ($errors->has('pack'))
+                                            <p class="text-danger">{{ $errors->first('pack') }}</p>
+                                        @endif
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -100,9 +127,9 @@
                                     <hr>
                                 </form>
                                 @if (session('status'))
-                                <div class="text-center">
-                                    <p>{{session('status')}}</p>
-                                </div>
+                                    <div class="text-center">
+                                        <p>{{ session('status') }}</p>
+                                    </div>
                                 @endif
                                 {{-- <div class="text-center">
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>

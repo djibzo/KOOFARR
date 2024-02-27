@@ -14,4 +14,7 @@ class AccountC extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function pack(){
+        return $this->hasMany(Pack::class,'id');
+    }
 }

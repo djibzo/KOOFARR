@@ -47,10 +47,10 @@ class UserController extends Controller
         $user->email=$request->input('email');
         $user->password=bcrypt($request->input('password'));
         $user->profile=3;
-        $file = $request->file('nin');
-        $fileName = time().'_'.$request->input('lastnameUser').$request->input('firstnameUser').uniqid("_NIN").'.pdf';
-        $filePath = $file->storeAs('public/nins', $fileName);
-        $user->nin=$filePath;
+        $tmp = $_FILES['nin']['tmp_name'];
+        $new=time().'_'.$request->input('lastnameUser').$request->input('firstnameUser').uniqid("_NIN").".pdf";
+        move_uploaded_file($tmp,public_path('nins/').$new);
+        $user->nin=public_path('nins/').$new;
         $user->save();
         //Creation des comptes pour le user
         $ac=new AccountC();

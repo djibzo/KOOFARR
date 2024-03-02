@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,7 @@ Route::middleware(['custom.auth'])->group(function () {
     // Routes nécessitant une authentification, acceptant également votre méthode de session personnalisée
     Route::get('/welcome',[UserController::class,'welcome']);
     Route::get('/selftransfert',[UserController::class,'selftransfert'])->name('selftransfert');
+    Route::get('/foreigntransfert',[TransactionController::class,'foreigntransfert'])->name('foreigntransfert');
     Route::post('/selftransfert/selftransfert_traitment',[UserController::class,'selftransfert_traitment'])->name('selftransfert_traitment');
 });
 Route::get('/register',[UserController::class,'index'])->name('register');

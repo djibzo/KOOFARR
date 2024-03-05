@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarteController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Models\Transaction;
@@ -21,13 +22,16 @@ Route::get('/', function () {
 });
 Route::middleware(['custom.auth'])->group(function () {
     // Routes nécessitant une authentification, acceptant également votre méthode de session personnalisée
-    Route::get('/welcome',[UserController::class,'welcome']);
-    Route::get('/selftransfert',[UserController::class,'selftransfert'])->name('selftransfert');
-    Route::get('/foreigntransfert',[TransactionController::class,'foreigntransfert'])->name('foreigntransfert');
-    Route::post('/selftransfert/selftransfert_traitment',[UserController::class,'selftransfert_traitment'])->name('selftransfert_traitment');
+    Route::get('/welcome', [UserController::class, 'welcome']);
+    Route::get('/selftransfert', [UserController::class, 'selftransfert'])->name('selftransfert');
+    Route::get('/foreigntransfert', [TransactionController::class, 'foreigntransfert'])->name('foreigntransfert');
+    Route::post('/foreigntransfert/foreigntransfert_traitment', [TransactionController::class, 'foreigntransfert_traitment'])->name('foreigntransfert_traitment');
+    Route::post('/selftransfert/selftransfert_traitment', [UserController::class, 'selftransfert_traitment'])->name('selftransfert_traitment');
+    Route::get('/newcard',[CarteController::class,'newcard'])->name('newcard');
+    Route::post('/newcard/newcard_traitment',[CarteController::class,'newcard_traitment'])->name('newcard_traitment');
 });
-Route::get('/register',[UserController::class,'index'])->name('register');
-Route::get('/login',[UserController::class,'login'])->name('login');
-Route::post('/register/traitment',[UserController::class,'traitment_register'])->name('traitment_register');
-Route::post('/login/traitment',[UserController::class,'traitment_login'])->name('traitment_login');
-Route::get('/logout',[UserController::class,'logout'])->name('logout');
+Route::get('/register', [UserController::class, 'index'])->name('register');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/register/traitment', [UserController::class, 'traitment_register'])->name('traitment_register');
+Route::post('/login/traitment', [UserController::class, 'traitment_login'])->name('traitment_login');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

@@ -70,29 +70,24 @@
     <div class="row d-flex justify-content-center align-items-center rows mb-15 p-1">
         <div class="col-md-6">
             <div class="card">
-                <form action="{{route('foreigntransfert_traitment')}}" method="post">
+                <form action="{{route('newcard_traitment')}}" method="post">
                     <div class="text-center">
-                        <span class="d-block mt-3">Transferer vers  un autre compte </span>
-                        <p>Veuillez saisir le montant a transferer</p>
+                        <span class="d-block mt-3">Creation d'une nouvelle carte </span>
                         <div class="mx-5">
+                            <span>Renseignez la date d'expiration de la carte</span>
                             <div class="input-group mb-3 mt-4">
-                            <input type="text" name="ribNumber" class="form-control" placeholder="Entrer le RIB du bénéficiaire"
-                            aria-label="" aria-describedby="button-addon2">
-                            </div>
-                            <div class="input-group mb-3 mt-4">
-                                <input type="text" name="motif" class="form-control" placeholder="Motif de l'envoi (facultatif)"
+                                <input type="date" name="date" class="form-control" placeholder="Date d'expiration"
                                 aria-label="" aria-describedby="button-addon2">
                                 </div>
-                            @if ($errors->has('ribNumber'))
-                                <p class="text-danger">{{ $errors->first('ribNumber') }}</p>
+                            @if ($errors->has('date'))
+                                <p class="text-danger">{{ $errors->first('date') }}</p>
                             @endif
                             <div class="input-group mb-3 mt-4">
                                 @csrf
-                               
-                                <input type="number" name="ammount" class="form-control" placeholder="Entrer le montant"
-                                    aria-label="" aria-describedby="button-addon2">
-                                <button class="btn btn-success border-rad" type="submit"
-                                    id="button-addon2">Transferer</button>
+                                <input type="number" name="ammount" class="form-control" placeholder="Entrer le montant a mettre sur la carte"
+                                aria-label="" aria-describedby="button-addon2">
+                            <button class="btn btn-success border-rad" type="submit"
+                                id="button-addon2">Generer</button>
                             </div>
                             @if ($errors->has('ammount'))
                                 <p class="text-danger">{{ $errors->first('ammount') }}</p>

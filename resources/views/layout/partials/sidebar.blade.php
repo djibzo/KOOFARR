@@ -6,28 +6,29 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-money-wink"></i>
+                {{-- <i class="fas fa-money-wink"></i> --}}
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/coins--v1.png" alt="coins--v1"/>
             </div>
             <div class="sidebar-brand-text mx-3">KOOFARR</div>
         </a>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr <?= !(empty(session()->has('user'))) && session('user')->profile == 3 ? "" : "hidden" ?> class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item active" <?= !(empty(session()->has('user'))) && session('user')->profile == 3 ? "" : "hidden" ?> >
             <a class="nav-link" href="http://127.0.0.1:8000/welcome">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
 
         <!-- Heading -->
-        <div class="sidebar-heading">
+        <div <?= !(empty(session()->has('user'))) && session('user')->profile == 3 ? "" : "hidden" ?> class="sidebar-heading">
             Menu
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li <?= !(empty(session()->has('user'))) && session('user')->profile == 3 ? "" : "hidden" ?> class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-dollar-sign fa-cog"></i>
@@ -43,7 +44,7 @@
         </li>
 
          <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        <li <?= !(empty(session()->has('user'))) && session('user')->profile == 3 ? "" : "hidden" ?> class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
@@ -109,12 +110,14 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
-        <!-- Sidebar Message 
-        <div class="sidebar-card d-none d-lg-flex">
-            <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-        </div>-->
+
+        <div class="sidebar-card d-none d-sm-flex">
+            @php
+                 use App\Models\AccountC;
+                 $ribNumber=AccountC::where('idUser', session('user')->id)->get('ribNumber')
+            @endphp
+            <p class="text-center mb-2"><strong>{{$ribNumber[0]->ribNumber}}</strong> est votre numero RIB pour recevoir des dépôts</p>
+        </div>
 
     </ul>
     <!-- End of Sidebar -->

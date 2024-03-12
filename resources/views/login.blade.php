@@ -35,22 +35,23 @@
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Link</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Accueil</a>
                         </li>
-                        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
+                        {{-- <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false" href="#">Dropdown </a>
                             <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
                                     href="#">First Item</a><a class="dropdown-item" role="presentation"
                                     href="#">Second Item</a><a class="dropdown-item" role="presentation"
                                     href="#">Third Item</a></div>
-                        </li>
+                        </li> --}}
                     </ul>
                     <form class="form-inline mr-auto" target="_self">
                         <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
                                 class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
-                    </form><span class="navbar-text"> <a href="#" class="login">Connexion</a></span><a
-                        class="btn btn-light action-button" role="button" href="#">Inscription</a>
+                    </form><span class="navbar-text"> <a href="{{ route('login') }}"
+                            class="login">Connexion</a></span><a class="btn btn-light action-button" role="button"
+                        href="{{ route('register') }}">Inscription</a>
                 </div>
             </div>
         </nav>
@@ -59,9 +60,9 @@
 
             <!-- Outer Row -->
             <div class="row justify-content-center">
-    
+
                 <div class="col-xl-10 col-lg-12 col-md-9">
-    
+
                     <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
@@ -70,47 +71,49 @@
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">Heureux de vous revoir !</h1>
                                         </div>
-                                        <form class="user" method="POST" action="{{route('traitment_login')}}">
+                                        <form class="user" method="POST" action="{{ route('traitment_login') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="email" name="email" class="form-control form-control-user"
-                                                    id="exampleInputEmail" aria-describedby="emailHelp"
+                                                <input type="email" name="email"
+                                                    class="form-control form-control-user" id="exampleInputEmail"
+                                                    aria-describedby="emailHelp"
                                                     placeholder="Entrez votre adresse mail">
                                             </div>
                                             @if ($errors->has('email'))
-                                            <p class="text-danger">{{ $errors->first('email') }}</p>
-                                             @endif
+                                                <p class="text-danger">{{ $errors->first('email') }}</p>
+                                            @endif
                                             <div class="form-group">
                                                 <input type="password" class="form-control form-control-user"
-                                                    id="exampleInputPassword" name="password" placeholder="Mot de passe">
+                                                    id="exampleInputPassword" name="password"
+                                                    placeholder="Mot de passe">
                                             </div>
                                             @if ($errors->has('password'))
-                                            <p class="text-danger">{{ $errors->first('password') }}</p>
-                                             @endif
+                                                <p class="text-danger">{{ $errors->first('password') }}</p>
+                                            @endif
                                             @if (session('status'))
-                                            <p class="text-danger">{{ session('status') }}</p>
-                                             @endif
+                                                <p class="text-danger">{{ session('status') }}</p>
+                                            @endif
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                Login
+                                                Se connecter
                                             </button>
                                             <hr>
                                         </form>
                                         <div class="text-center">
-                                            <a class="small" href="{{route('register')}}">Creer un compte</a>
+                                            <a class="small" href="{{ route('register') }}">Creer un compte</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
+
                 </div>
-    
+
             </div>
-    
+
         </div>
-    
+
     </div>
 </body>

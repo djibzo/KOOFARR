@@ -22,3 +22,25 @@
             </div>
         </div>
     </div>
+    {{-- @forelse ($users as $u)
+    <div class="modal fade" id="disabledUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Voulez vous vraiment desactiver ce compte ?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Sélectionnez « Desactiver » ci-dessous si vous êtes prêt à mettre en suspension ce compte.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                <a class="btn btn-danger" href="">Desactiver</a>
+            </div>
+        </div>
+    </div>
+</div>
+@empty
+        
+@endforelse --}}

@@ -35,22 +35,22 @@
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Link</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/">Acceuil</a>
                         </li>
-                        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
+                        {{-- <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false" href="#">Dropdown </a>
                             <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
                                     href="#">First Item</a><a class="dropdown-item" role="presentation"
                                     href="#">Second Item</a><a class="dropdown-item" role="presentation"
                                     href="#">Third Item</a></div>
-                        </li>
+                        </li> --}}
                     </ul>
                     <form class="form-inline mr-auto" target="_self">
                         <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
                                 class="form-control search-field" type="search" name="search" id="search-field">
                         </div>
-                    </form><span class="navbar-text"> <a href="#" class="login">Connexion</a></span><a
-                        class="btn btn-light action-button" role="button" href="#">Inscription</a>
+                    </form><span class="navbar-text"> <a href="{{route('login')}}" class="login">Connexion</a></span><a
+                        class="btn btn-light action-button" role="button" href="{{route('register')}}">Inscription</a>
                 </div>
             </div>
         </nav>
@@ -64,7 +64,7 @@
                         <div class="col-lg-7">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Creer un compte</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Créer un compte</h1>
                                 </div>
                                 <form class="user" method="post" action="{{ route('traitment_register') }}" enctype="multipart/form-data">
                                     @csrf
@@ -135,7 +135,7 @@
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div> --}}
                                 <div class="text-center">
-                                    <a class="small" href="">Vous avez déja un compte ? Connectez vous !</a>
+                                    <a class="small" href="{{route('login')}}">Vous avez déja un compte ? Connectez vous !</a>
                                 </div>
                             </div>
                         </div>

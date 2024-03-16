@@ -11240,6 +11240,12 @@ a:focus {
     background-size: cover
 }
 
+.bg-guichetier-image {
+    background: url(https://img.freepik.com/vecteurs-libre/cliente-visiteur-parlant-receptionniste-bureau-bulle-dialogue-illustration-vectorielle-plane-ordinateur-portable-service-communication_74855-13068.jpg?w=900&t=st=1710551236~exp=1710551836~hmac=e252d69ec5a5a4257e6af9174f2908742fc179ab4ea992e7d2489b6f6a059d20);
+    background-position: center;
+    background-size: cover
+}
+
 .bg-password-image {
     background: url(https://source.unsplash.com/oWTW-jNGl9I/600x800);
     background-position: center;

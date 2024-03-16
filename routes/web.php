@@ -34,6 +34,11 @@ Route::middleware(['custom.auth'])->group(function () {
     Route::post('/newcard/newcard_traitment',[CarteController::class,'newcard_traitment'])->name('newcard_traitment');
     Route::get('/lusers/disablec/{objet}',[UserController::class,'disablec'])->name('disablec');
     Route::get('/lusers/enablec/{objet}',[UserController::class,'enablec'])->name('enablec');
+    Route::get('/lguichetier/disableg/{objet}',[UserController::class,'disableg'])->name('disableg');
+    Route::get('/lguichetier/enableg/{objet}',[UserController::class,'enableg'])->name('enableg');
+    Route::get('/createguichetier',[UserController::class,'createguichetier'])->name('createguichetier');
+    Route::get('/lguichetier',[UserController::class,'lguichetier'])->name('lguichetier');
+    Route::post('/createguichetier/createguichetier_traitment',[UserController::class,'createguichetier_traitment'])->name('createguichetier_traitment');
 });
 Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');

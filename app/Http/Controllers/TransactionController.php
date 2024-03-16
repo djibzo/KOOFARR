@@ -23,8 +23,8 @@ class TransactionController extends Controller
         $totalAmountBySender =Transaction::where('idSender',session('user')->id)
         ->sum('ammount');
         $idPack=AccountC::where('idUser', session('user')->id)->get()[0]['idPack'];
-        $pack=Pack::where('id',$idPack)->get()[0];
-        if (!(AccountC::where('ribNumber', $ribNumber)->get()->isEmpty()) && AccountC::where('idUser', session('user')->id)->get()[0]['ribNumber'] != $ribNumber  && $totalAmountBySender<=$pack->ceiling) {
+        $packU=Pack::where('id',$idPack)->get()[0];//pack du user connecte
+        if (!(AccountC::where('ribNumber', $ribNumber)->get()->isEmpty()) && AccountC::where('idUser', session('user')->id)->get()[0]['ribNumber'] != $ribNumber  && $totalAmountBySender<=$packU->ceiling) {
             $amnt = (float)$request->input('ammount');
             $acUserF = AccountC::where('ribNumber', $ribNumber)->get(); //Le compte vers lequel on souhaite transferer
             $acUser = AccountC::where('idUser', session('user')->id)->get(); //Le compte sur lequel on preleve

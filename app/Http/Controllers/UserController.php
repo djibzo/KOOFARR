@@ -97,7 +97,7 @@ class UserController extends Controller
         ]);
         $user = User::where('email', $request->input('email'))->first();
         if ($user) {
-            if (Hash::check($request->input('password'), $user->password) && $user->status==1) {
+            if (Hash::check($request->input('password'), $user->password) && $user->status == 1) {
                 switch ($user->profile) {
                     case 3:
                         $request->session()->put('user', $user);
@@ -146,18 +146,22 @@ class UserController extends Controller
     }
     public function deposit_traitment(Request $request)
     {
+        
         $request->validate([
             'ribNumber' => 'required',
             'ammount' => 'required|numeric|min:500'
         ]);
         $ribNumber = $request->input('ribNumber');
+        $idPack = AccountC::where('ribNumber', $ribNumber)->get()[0]['idPack'];
+        $packF = Pack::where('id', $idPack)->get()[0]; //pack du user a deposer
+        //si le mnt du user est < au montant du pack
         $amnt = (float)$request->input('ammount');
-        if (!(AccountC::where('ribNumber', $ribNumber)->get()->isEmpty())) {
+        if ((!(AccountC::where('ribNumber', $ribNumber)->get()->isEmpty())) && AccountC::where('ribNumber', $ribNumber)->get()[0]['ammount']+$amnt < $packF->ceiling) {
             $acUserF = AccountC::where('ribNumber', $ribNumber)->get(); //Le compte vers lequel on souhaite transferer
             AccountC::where('ribNumber', $ribNumber)->update(['ammount' => $acUserF[0]['ammount'] += $amnt]);
             return redirect('/deposit')->with('status', 'Dépot effectué avec success !');
         } else {
-            return redirect('/deposit')->with('status', 'Veuillez bien reverifier le RIB saisi');
+            return redirect('/deposit')->with('status', 'Erreur lors du depot (RIB invalide ou compte plafonné)');
         }
     }
     public function lusers(Request $request)
@@ -184,5 +188,56 @@ class UserController extends Controller
         );
 
         return redirect('/lusers')->with('status', "Compte réactivé");
+    }
+    public function createguichetier()
+    {
+        return view('layout.admin.createGuichetier');
+    }
+    public function createguichetier_traitment(Request $request)
+    {
+        $request->validate([
+            'lastnameUser' => 'required',
+            'firstnameUser' => 'required',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|min:8',
+        ]);
+        try {
+            $user = new User();
+            $user->lastnameUser = $request->input('lastnameUser');
+            $user->firstnameUser = $request->input('firstnameUser');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->profile = 2;
+            $user->nin = "GUICHETIER";
+            $user->status = 1;
+            $user->save();
+            return redirect('/createguichetier')->with('status', 'Guichetier créé avec success !');
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+    }
+    public function lguichetier(Request $request){
+        if ($request->session()->has('user')) {
+            $guichietiers = User::where('profile', 2)->get();
+            $userInfos = User::find(session('user')->id);
+            return view('layout.admin.lguichetier', compact('userInfos'), compact('guichietiers'));
+        }
+    }
+    public function disableg(string $id)
+    {
+        $user = User::find($id);
+        $user->update(
+            ["status" => 0]
+        );
+        return redirect('/lguichetier')->with('status', 'Compte désactivé');
+    }
+    public function enableg(string $id)
+    {
+        $user = User::find($id);
+        $user->update(
+            ["status" => 1]
+        );
+
+        return redirect('/lguichetier')->with('status', "Compte réactivé");
     }
 }

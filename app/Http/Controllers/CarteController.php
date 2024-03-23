@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AccountC;
 use App\Models\Carte;
-
+use App\Models\User;
 class CarteController extends Controller
 {
  
@@ -43,6 +43,11 @@ class CarteController extends Controller
         } else {
             return redirect('/newcard')->with('status', 'Erreur lors de la creation de la carte veuillez rééssayer !');
         }
+    }
+    public function mycards(){
+        $userInfos = User::where('id',session('user')->id)->get();
+        $cartes=Carte::where('idUser',$userInfos[0]['id'])->get();
+        return view('layout.carte.mycards',compact('userInfos'), compact('cartes'));
     }
    
 }

@@ -51,14 +51,14 @@
         <li <?= !empty(session()->has('user')) && session('user')->profile == 3 ? '' : 'hidden' ?> class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
+                <img width="20" height="20" src="https://img.icons8.com/ios/50/FFFFFF/bank-cards--v1.png" alt="bank-cards--v1"/>
                 <span>Cartes</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('newcard') }}">Nouvelle carte</a>
-                    <a class="collapse-item" href="">Mes cartes</a>
+                    <a class="collapse-item" href="{{route('mycards')}}">Mes cartes</a>
                 </div>
             </div>
         </li>

@@ -65,7 +65,7 @@
         <li <?= !empty(session()->has('user')) && session('user')->profile == 1 ? '' : 'hidden' ?> class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-dollar-sign fa-cog"></i>
+                <img width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/group.png" alt="group"/>
                 <span>Utilisateurs</span>
             </a>
             <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -79,7 +79,7 @@
         <li <?= !empty(session()->has('user')) && session('user')->profile == 1 ? '' : 'hidden' ?> class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-dollar-sign fa-cog"></i>
+                <img width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/atm.png" alt="atm"/>
                 <span>Guichetier</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

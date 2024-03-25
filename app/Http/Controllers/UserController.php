@@ -64,7 +64,8 @@ class UserController extends Controller
             $tmp = $_FILES['nin']['tmp_name'];
             $new = time() . '_' . $request->input('lastnameUser') . $request->input('firstnameUser') . uniqid("_NIN") . ".pdf";
             move_uploaded_file($tmp, public_path('nins/') . $new);
-            $user->nin = public_path('nins/') . $new;
+            $filename='nins/'.$new;
+            $user->nin = $filename;
             $user->save();
             //Creation des comptes pour le user
             $ac = new AccountC();

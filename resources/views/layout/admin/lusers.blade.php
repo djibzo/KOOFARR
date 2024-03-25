@@ -31,6 +31,7 @@
                                 <a class="btn btn-success btn-lg" href="{{ route('enablec', $user) }}" role="button">Activer
                                     le compte</a>
                             @endif
+                            <a class="btn btn-primary btn-lg" href="{{ $user->nin }}" target="_blank" role="button">Voir le CIN</a>
                         </td>
                     </tr>
                     @php

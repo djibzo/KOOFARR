@@ -5,9 +5,6 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
-use Intervention\Image\Image;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,53 +23,26 @@ Route::get('/', function () {
 Route::middleware(['custom.auth'])->group(function () {
     // Routes nécessitant une authentification, acceptant également votre méthode de session personnalisée
     Route::get('/welcome', [UserController::class, 'welcome']);
-    Route::get('/deposit',[UserController::class,'deposit']);
-    Route::post('/deposit/deposit_traitment',[UserController::class,'deposit_traitment'])->name('deposit_traitment');
+    Route::get('/deposit', [UserController::class, 'deposit']);
+    Route::post('/deposit/deposit_traitment', [UserController::class, 'deposit_traitment'])->name('deposit_traitment');
     Route::get('/selftransfert', [UserController::class, 'selftransfert'])->name('selftransfert');
-    Route::get('/lusers',[UserController::class,'lusers'])->name('lusers');
+    Route::get('/lusers', [UserController::class, 'lusers'])->name('lusers');
     Route::get('/foreigntransfert', [TransactionController::class, 'foreigntransfert'])->name('foreigntransfert');
     Route::post('/foreigntransfert/foreigntransfert_traitment', [TransactionController::class, 'foreigntransfert_traitment'])->name('foreigntransfert_traitment');
     Route::post('/selftransfert/selftransfert_traitment', [UserController::class, 'selftransfert_traitment'])->name('selftransfert_traitment');
-    Route::get('/newcard',[CarteController::class,'newcard'])->name('newcard');
-    Route::get('/mycards',[CarteController::class,'mycards'])->name('mycards');
-    Route::post('/newcard/newcard_traitment',[CarteController::class,'newcard_traitment'])->name('newcard_traitment');
-    Route::get('/lusers/disablec/{objet}',[UserController::class,'disablec'])->name('disablec');
-    Route::get('/lusers/enablec/{objet}',[UserController::class,'enablec'])->name('enablec');
-    Route::get('/lguichetier/disableg/{objet}',[UserController::class,'disableg'])->name('disableg');
-    Route::get('/lguichetier/enableg/{objet}',[UserController::class,'enableg'])->name('enableg');
-    Route::get('/createguichetier',[UserController::class,'createguichetier'])->name('createguichetier');
-    Route::get('/lguichetier',[UserController::class,'lguichetier'])->name('lguichetier');
-    Route::post('/createguichetier/createguichetier_traitment',[UserController::class,'createguichetier_traitment'])->name('createguichetier_traitment');
+    Route::get('/newcard', [CarteController::class, 'newcard'])->name('newcard');
+    Route::get('/mycards', [CarteController::class, 'mycards'])->name('mycards');
+    Route::post('/newcard/newcard_traitment', [CarteController::class, 'newcard_traitment'])->name('newcard_traitment');
+    Route::get('/lusers/disablec/{objet}', [UserController::class, 'disablec'])->name('disablec');
+    Route::get('/lusers/enablec/{objet}', [UserController::class, 'enablec'])->name('enablec');
+    Route::get('/lguichetier/disableg/{objet}', [UserController::class, 'disableg'])->name('disableg');
+    Route::get('/lguichetier/enableg/{objet}', [UserController::class, 'enableg'])->name('enableg');
+    Route::get('/createguichetier', [UserController::class, 'createguichetier'])->name('createguichetier');
+    Route::get('/lguichetier', [UserController::class, 'lguichetier'])->name('lguichetier');
+    Route::post('/createguichetier/createguichetier_traitment', [UserController::class, 'createguichetier_traitment'])->name('createguichetier_traitment');
 });
 Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/register/traitment', [UserController::class, 'traitment_register'])->name('traitment_register');
 Route::post('/login/traitment', [UserController::class, 'traitment_login'])->name('traitment_login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-
-// Route::get('/generate-card', function () {
-//     // Créez une nouvelle image avec une taille spécifique
-//     $image = Image::canvas(400, 200);
-
-//     // Ajoutez un fond coloré à l'image
-//     $image->rectangle(0, 0, 400, 200, function ($draw) {
-//         $draw->background('#3498db');
-//     });
-
-//     // Ajoutez l'entête de la banque
-//     $image->text('Nom de Votre Banque', 200, 30, function($font) {
-//         // Vous pouvez laisser cette fonction vide pour utiliser la police par défaut
-//     });
-
-//     // Ajoutez l'emplacement de la date d'expiration
-//     $image->text('MM/AA', 50, 150);
-
-//     // Ajoutez l'emplacement du CVV
-//     $image->text('CVV', 300, 150);
-
-//     // Sauvegardez l'image
-//     $image->save(public_path('images/card.png'));
-
-//     // Retournez une réponse ou redirigez l'utilisateur
-//     return $image->response('png');
-// });
